@@ -15,6 +15,10 @@ public class Greeting {
 
     private String message;
 
+    public Greeting(){
+
+    }
+
     public Greeting(Long id, String message) {
         this.id = id;
         this.message = message;

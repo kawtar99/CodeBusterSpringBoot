@@ -1,6 +1,7 @@
 package fr.codebusters.hellospring.service;
 
 import fr.codebusters.hellospring.entity.Greeting;
+import fr.codebusters.hellospring.exception.GreetingNotFoundException;
 import fr.codebusters.hellospring.repository.GreetingRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,8 @@ public class GreetingService {
     }
 
     public Greeting read(Long id){
-        return greetingRepository.getById(id);
+        return greetingRepository.findById(id)
+                .orElseThrow(() -> new GreetingNotFoundException("Greeting with id : " + id + " is not found"));
     }
 
     public Greeting save(Greeting greeting){

@@ -68,12 +68,21 @@ class HelloControllerTest {
     }
 
     @Test
-    void list() throws Exception {
+    void shouldListAllGreetings() throws Exception {
         this.mockMvc.perform(get("/greetings"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.size()", is(2)))
                 .andExpect(jsonPath("$[0].id", is(1)))
                 .andExpect(jsonPath("$[1].id", is(2)));
+    }
+
+    @Test
+    void shouldListEmptyGreetings() throws Exception {
+        when(service.list()).thenReturn(List.of());
+
+        this.mockMvc.perform(get("/greetings"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.size()", is(0)));
     }
 
     @Test

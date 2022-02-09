@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,12 +25,16 @@ class GreetingServiceTest {
     @MockBean
     private GreetingRepository greetingRepository;
 
+    private Collection<Greeting> collection;
+
     @BeforeEach
     public void setUp(){
         greetingService = new GreetingService(greetingRepository);
 
         Greeting g1 = new Greeting(1L, "First Greeting");
         Greeting g2 = new Greeting(2L, "Second Greeting");
+
+        collection = List.of(g1, g2);
 
         //when(greetingRepository.getById(100L)).thenReturn(null);
         when(greetingRepository.findById(1L)).thenReturn(Optional.of(g1));
@@ -64,6 +69,9 @@ class GreetingServiceTest {
 
     @Test
     void shouldListAllGreetings() {
+        List<Greeting> greetings = greetingService.list();
 
+        assertEquals(greetings.size(), 2);
+        assertTrue(greetings.containsAll(collection));
     }
 }

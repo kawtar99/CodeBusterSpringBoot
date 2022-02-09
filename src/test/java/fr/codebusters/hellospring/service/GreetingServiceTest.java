@@ -1,6 +1,7 @@
 package fr.codebusters.hellospring.service;
 
 import fr.codebusters.hellospring.entity.Greeting;
+import fr.codebusters.hellospring.exception.GreetingNotFoundException;
 import fr.codebusters.hellospring.repository.GreetingRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,8 +9,10 @@ import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -26,16 +29,19 @@ class GreetingServiceTest {
         greetingService = new GreetingService(greetingRepository);
 
         Greeting g1 = new Greeting(1L, "First Greeting");
+        Greeting g2 = new Greeting(2L, "Second Greeting");
 
-        when(greetingRepository.getById(100L)).thenReturn(null);
-        when(greetingRepository.getById(1L)).thenReturn(g1);
+        //when(greetingRepository.getById(100L)).thenReturn(null);
+        when(greetingRepository.findById(1L)).thenReturn(Optional.of(g1));
+        when(greetingRepository.findAll()).thenReturn(List.of(g1, g2));
     }
 
     @Test
     void shouldReadNonexistentGreeting() {
+        Throwable e = assertThrows(GreetingNotFoundException.class,
+                () -> greetingService.read(100L));
 
-        Greeting result = greetingService.read(100L);
-        assertNull(result);
+        assertEquals(e.getMessage(), "Greeting with id : 100 is not found");
     }
 
     @Test
@@ -47,10 +53,17 @@ class GreetingServiceTest {
     }
 
     @Test
-    void save() {
+    void shouldSaveGreeting() {
+        Greeting g3 = new Greeting(3L, "Third Greeting");
+        when(greetingRepository.save(g3)).thenReturn(g3);
+        Greeting result = greetingService.save(g3);
+
+        assertEquals(result.getId(), 3L);
+        assertEquals(result.getMessage(), "Third Greeting");
     }
 
     @Test
-    void list() {
+    void shouldListAllGreetings() {
+
     }
 }

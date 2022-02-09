@@ -46,4 +46,8 @@ public class HelloController {
         greetingService.save(greeting);
     }
 
+    @DeleteMapping(value = "/greetings/{id}")
+    public void delete(@PathVariable(value = "id") Long id){
+        greetingService.delete(idg);
+    }
 }

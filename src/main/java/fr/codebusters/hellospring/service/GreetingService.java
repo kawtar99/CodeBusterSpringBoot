@@ -25,6 +25,10 @@ public class GreetingService {
         return greetingRepository.save(greeting);
     }
 
+    public void delete(Long id){
+        greetingRepository.deleteById(id);
+    }
+
     public List<Greeting> list(){
         return greetingRepository.findAll();
     }

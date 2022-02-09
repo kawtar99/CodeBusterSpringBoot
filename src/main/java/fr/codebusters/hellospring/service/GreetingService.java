@@ -1,16 +1,32 @@
 package fr.codebusters.hellospring.service;
 
 import fr.codebusters.hellospring.entity.Greeting;
+import fr.codebusters.hellospring.repository.GreetingRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @Service
 public class GreetingService {
 
+    private GreetingRepository greetingRepository;
+
+    public GreetingService(GreetingRepository greetingRepository){
+        this.greetingRepository = greetingRepository;
+    }
+
+    public Greeting read(Long id){
+        return greetingRepository.getById(id);
+    }
+
+    public Greeting save(Greeting greeting){
+        return greetingRepository.save(greeting);
+    }
+
+    public List<Greeting> list(){
+        return greetingRepository.findAll();
+    }
+    /*
     private static Long idGenerator = 0L;
 
     Map<Long, Greeting> greetings = new HashMap<>();
@@ -32,5 +48,5 @@ public class GreetingService {
     public Collection<Greeting> list(){
         return greetings.values();
     }
-
+     */
 }

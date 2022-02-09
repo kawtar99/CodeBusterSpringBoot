@@ -1,10 +1,17 @@
 package fr.codebusters.hellospring.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Greeting {
 
-    //private static Long ID_COUNTER = 0l;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String message;
 
     public Greeting(Long id, String message) {

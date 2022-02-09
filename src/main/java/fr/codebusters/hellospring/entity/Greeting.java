@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Greeting {
@@ -33,6 +34,14 @@ public class Greeting {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Greeting greeting = (Greeting) o;
+        return Objects.equals(id, greeting.id) && Objects.equals(message, greeting.message);
     }
 
 }

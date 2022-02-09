@@ -36,9 +36,9 @@ public class HelloController {
         return (greeting == null)? ResponseEntity.notFound().build() : ResponseEntity.ok(greeting);
     }
 
-    @PostMapping(value = "/greetings/")
-    public Greeting save(@RequestBody Greeting greeting){
-        return greetingService.save(greeting);
+    @PostMapping(value = "/greetings")
+    public ResponseEntity<Greeting> save(@RequestBody Greeting greeting){
+        return ResponseEntity.ok(greetingService.save(greeting));
     }
 
     @PutMapping(value = "/greetings/{id}")

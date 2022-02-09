@@ -40,6 +40,7 @@ class HelloControllerTest {
         Greeting g2 = new Greeting(2L, "second greeting");
 
         when(service.list()).thenReturn(List.of(g1, g2));
+        when(service.read(220L)).thenReturn(null);
     }
 
     @Test
@@ -60,7 +61,9 @@ class HelloControllerTest {
     }
 
     @Test
-    void read() {
+    void shouldGet404StatusWhenGreetingNotFound() throws Exception {
+        this.mockMvc.perform(get("/greetings/220"))
+                .andExpect(status().isNotFound());
     }
 
     @Test

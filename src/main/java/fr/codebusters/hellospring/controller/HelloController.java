@@ -4,6 +4,7 @@ package fr.codebusters.hellospring.controller;
 import fr.codebusters.hellospring.entity.Greeting;
 import fr.codebusters.hellospring.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -30,8 +31,9 @@ public class HelloController {
     }
 
     @GetMapping(value = "/greetings/{id}")
-    public Greeting read(@PathVariable(value = "id") Long id){
-        return greetingService.read(id);
+    public ResponseEntity<Greeting> read(@PathVariable(value = "id") Long id){
+        Greeting greeting = greetingService.read(id);
+        return (greeting == null)? ResponseEntity.notFound().build() : ResponseEntity.ok(greeting);
     }
 
     @PostMapping(value = "/greetings/")

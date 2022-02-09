@@ -91,11 +91,12 @@ class HelloControllerTest {
     }
 
     @Test
-    void save() throws Exception {
+    void shouldCreateGreetingObject() throws Exception {
         this.mockMvc.perform(post("/greetings")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(g3)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(3)));
+                .andExpect(jsonPath("$.id", is(3)))
+                .andExpect(jsonPath("$.message", is("third greeting")));
     }
 }

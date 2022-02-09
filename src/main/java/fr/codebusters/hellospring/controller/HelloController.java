@@ -48,6 +48,6 @@ public class HelloController {
 
     @DeleteMapping(value = "/greetings/{id}")
     public void delete(@PathVariable(value = "id") Long id){
-        greetingService.delete(idg);
+        greetingService.delete(id);
     }
 }

@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-public class HelloController {
+public class GreetingController {
 
     private GreetingService greetingService;
 
     @Autowired
-    public HelloController( @Qualifier("greetingServiceRest") GreetingService greetingService){
+    public GreetingController(@Qualifier("greetingServiceRest") GreetingService greetingService){
         this.greetingService = greetingService;
     }
 

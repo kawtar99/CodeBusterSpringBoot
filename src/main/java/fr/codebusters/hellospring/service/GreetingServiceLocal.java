@@ -4,9 +4,7 @@ import fr.codebusters.hellospring.entity.Greeting;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Qualifier("greetingServiceLocal")
@@ -36,6 +34,15 @@ public class GreetingServiceLocal implements GreetingService{
 
     public Collection<Greeting> list(){
         return greetings.values();
+    }
+
+
+    public List<Greeting> saveAll(List<Greeting> greetings) {
+        List<Greeting> result = new ArrayList<>();
+        greetings.forEach((greeting -> {
+            result.add(save(greeting));
+        }));
+        return  result;
     }
 
 }

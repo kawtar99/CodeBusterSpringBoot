@@ -27,7 +27,7 @@ class GreetingServiceTest {
     @MockBean
     private GreetingRepository greetingRepository;
 
-    private Collection<Greeting> collection;
+    private List<Greeting> collection;
 
     @BeforeEach
     public void setUp(){
@@ -40,6 +40,7 @@ class GreetingServiceTest {
 
         when(greetingRepository.findById(1L)).thenReturn(Optional.of(g1));
         when(greetingRepository.findAll()).thenReturn(List.of(g1, g2));
+        when(greetingRepository.saveAll(collection)).thenReturn(collection);
     }
 
     @Test
@@ -74,5 +75,13 @@ class GreetingServiceTest {
 
         assertEquals(greetings.size(), 2);
         assertTrue(greetings.containsAll(collection));
+    }
+
+    @Test
+    void shouldSaveAllGreetings(){
+        List<Greeting> result = greetingService.saveAll(collection);
+
+        assertEquals(result.size(), 2);
+        assertTrue(result.containsAll(collection));
     }
 }

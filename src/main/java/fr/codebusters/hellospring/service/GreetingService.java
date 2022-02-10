@@ -19,4 +19,6 @@ public interface GreetingService {
 
     public Collection<Greeting> list();
 
+    public List<Greeting> saveAll(List<Greeting> greetings);
+
 }

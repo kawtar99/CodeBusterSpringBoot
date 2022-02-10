@@ -34,4 +34,8 @@ public class GreetingServiceRest implements GreetingService {
     public List<Greeting> list(){
         return greetingRepository.findAll();
     }
+
+    public List<Greeting> saveAll(List<Greeting> greetings){
+        return greetingRepository.saveAll(greetings);
+    }
 }

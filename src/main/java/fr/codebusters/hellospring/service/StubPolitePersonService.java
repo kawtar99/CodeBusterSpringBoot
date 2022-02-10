@@ -16,6 +16,7 @@ public class StubPolitePersonService implements PolitePersonService{
     private PolitePerson politePerson;
 
     public StubPolitePersonService() {
+        this.politePerson = new PolitePerson();
         this.politePerson.setId(1L);
 
         Greeting g1= new Greeting(100L, "Hello!");

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -31,7 +30,7 @@ public class GreetingServiceLocal implements GreetingService{
     }
 
     public void delete(Long id) {
-
+        greetings.remove(id);
     }
 
 

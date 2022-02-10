@@ -4,6 +4,7 @@ package fr.codebusters.hellospring.controller;
 import fr.codebusters.hellospring.entity.Greeting;
 import fr.codebusters.hellospring.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class HelloController {
     private GreetingService greetingService;
 
     @Autowired
-    public HelloController(GreetingService greetingService){
+    public HelloController( @Qualifier("greetingServiceRest") GreetingService greetingService){
         this.greetingService = greetingService;
     }
 

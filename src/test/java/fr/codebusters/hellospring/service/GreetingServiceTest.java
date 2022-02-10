@@ -5,8 +5,8 @@ import fr.codebusters.hellospring.exception.GreetingNotFoundException;
 import fr.codebusters.hellospring.repository.GreetingRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
@@ -21,6 +21,7 @@ import static org.mockito.Mockito.when;
 class GreetingServiceTest {
 
     @Autowired
+    @Qualifier("greetingServiceRest")
     private GreetingService greetingService;
 
     @MockBean
@@ -30,14 +31,13 @@ class GreetingServiceTest {
 
     @BeforeEach
     public void setUp(){
-        greetingService = new GreetingService(greetingRepository);
+        greetingService = new GreetingServiceRest(greetingRepository);
 
         Greeting g1 = new Greeting(1L, "First Greeting");
         Greeting g2 = new Greeting(2L, "Second Greeting");
 
         collection = List.of(g1, g2);
 
-        //when(greetingRepository.getById(100L)).thenReturn(null);
         when(greetingRepository.findById(1L)).thenReturn(Optional.of(g1));
         when(greetingRepository.findAll()).thenReturn(List.of(g1, g2));
     }
@@ -70,7 +70,7 @@ class GreetingServiceTest {
 
     @Test
     void shouldListAllGreetings() {
-        List<Greeting> greetings = greetingService.list();
+        Collection<Greeting> greetings = greetingService.list();
 
         assertEquals(greetings.size(), 2);
         assertTrue(greetings.containsAll(collection));

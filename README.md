@@ -14,7 +14,7 @@ Here is a list of dependencies used for the project:
 
 # Project Architecture
 
-This project is a RESTFul application. The source classes are located in the [src/test/java/fr/codebusters/hellospring/] folder. 
+This project is a RESTFul application. The source classes are located in the `src/test/java/fr/codebusters/hellospring/` folder. 
 This folder contains various packages that structure the project architecture:
 * entity : contains POJO objects that encapsulate the Data Structures used for the project. These Data Structures are:
     * Greeting : A Greeting is a polite expression said to greet someone. This structure has a unique id and a string message.

@@ -42,6 +42,10 @@ This application defines different endpoints that enable the user to read, retri
 
 <img width="631" alt="List_greetings" src="https://user-images.githubusercontent.com/59917018/153767167-dc2e0ef6-1f6f-4c08-baf5-09de6b4e02ef.PNG">
 
+* **Updating a Greeting**: this can be made through the **PUT** method with the Url:  `localhost:8080/greetings/{id}`. The `id` is identifying the greeting we want to update. This method takes a body request with a Greeting object containing the new information.
+
+<img width="633" alt="put_greeting" src="https://user-images.githubusercontent.com/59917018/153780551-bb377355-0db2-4f37-92c8-61106675f4de.PNG">
+
 
 * **Deleting a Greeting** : A Greeting object can also be deleted using the **Delete** method and the Url : `localhost:8080/greetings/{id}`. This method takes no request body and has no response body.
 

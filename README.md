@@ -46,3 +46,7 @@ This application defines different endpoints that enable the user to read, retri
 * **Deleting a Greeting** : A Greeting object can also be deleted using the **Delete** method and the Url : `localhost:8080/greetings/{id}`. This method takes no request body and has no response body.
 
 # Progress
+* The Application follows a Spring Boot RestFul application Layout: classes annotated with **@RestController**, **@Service**, **@Entity**
+* The Repository used to store Greeting extends **JPARepository**
+* The return type of methods in the controller class is **ResponseEntity**<**Greeting**>. This structure allows to return the object and specify a HTTP status.
+* The exceptions are handled in a class annotated with **@ControllerAdvice** 

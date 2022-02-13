@@ -9,7 +9,7 @@ Here is a list of dependencies used for the project:
 * [Java](https://www.java.com/fr/): Version 17
 * [Apache Maven](https://maven.apache.org/) : Version 3.8.3
 * [Spring Boot](https://spring.io/projects/spring-boot) : Version 2.6.2
-* [JUnit](https://junit.org/junit5) : Version JUnit 5 tu run tests
+* [JUnit](https://junit.org/junit5) : Version JUnit 5 to run tests
 * [H2 Database](http://h2database.com/html/main.html) : we use in-memory database for this project
 
 # Project Architecture
@@ -51,4 +51,4 @@ This application defines different endpoints that enable the user to read, retri
 * The return type of methods in the controller class is **ResponseEntity**<**Greeting**>. This structure allows to return the object and specify a HTTP status.
 * The exceptions are handled in a class annotated with **@ControllerAdvice** 
 * The unit tests are in the `src/test/java/fr/codebusters/hellospring/` folder
-* The test are implemented using **Mock** objects
+* The tests are implemented using **Mock** objects

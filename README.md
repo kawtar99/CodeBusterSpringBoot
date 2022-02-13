@@ -2,7 +2,7 @@
 ***
 
 CodeBusterSpringBoot Project is an introduction project to Spring Boot. The aim of this project is to test the Spring Boot framework and explore some of its features.
-The project revolves around polites persons and the greeting expressions they use.
+The project revolves around polite persons and the greeting expressions they use.
 
 # Project Dependencies
 Here is a list of dependencies used for the project:
@@ -27,8 +27,22 @@ This folder contains various packages that structure the project architecture:
 
 # Features
 
-## Data Structures 
+This application defines different endpoints that enable the user to read, retrieve, and delete information about greetings. These operations are made possible by **HTTP Requests** using these **URLs**:
 
-## EndPoints
+* **Creating a Greeting** : We can create a Greeting object Using the **POST** method with the following URL : `localhost:8080/greetings/`. This is the result of the request on Postman. The request body is a **JSON** object with **message** field specified. The id is generated automatically by the program.
+
+<img width="623" alt="Post_Greeting" src="https://user-images.githubusercontent.com/59917018/153766859-a6dfcbab-d419-4bd2-b563-fd6da58d1320.PNG">
+
+* **Reading a Greeting** : We can read a Greeting object Using the **GET** method with the following URL : `localhost:8080/greetings/{id}`. The `id` parameter is the id of the greeting we want to read. The response body is a **JSON** object.
+
+
+<img width="631" alt="Get_Greeting" src="https://user-images.githubusercontent.com/59917018/153766993-c9019910-0512-43c8-9d22-591fdb433f5a.PNG">
+
+* **Listing all greetings** : All Greeting objects can be listed using the method **GET** the Url: `localhost:8080/greetings/`:
+
+<img width="631" alt="List_greetings" src="https://user-images.githubusercontent.com/59917018/153767167-dc2e0ef6-1f6f-4c08-baf5-09de6b4e02ef.PNG">
+
+
+* **Deleting a Greeting** : A Greeting object can also be deleted using the **Delete** method and the Url : `localhost:8080/greetings/{id}`. This method takes no request body and has no response body.
 
 # Progress
